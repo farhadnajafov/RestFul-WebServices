@@ -14,9 +14,15 @@ public class UserResource {
         return userService.findAll();
     };
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public User retireveUser(@PathVariable int id){
-        return userService.findUser(id);
+
+        User user =  userService.findUser(id);
+        if(user==null){
+            throw new UserNotFoundException("id-"+id);
+
+        }
+        return user;
     }
 
     @PostMapping("users")
