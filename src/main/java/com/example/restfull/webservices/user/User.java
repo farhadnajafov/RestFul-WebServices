@@ -1,16 +1,26 @@
 package com.example.restfull.webservices.user;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
+import jdk.jfr.Timestamp;
 
 import java.util.Date;
-
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue
     private Integer id;
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
-    @Past
     private Date birthDate;
+
+    public User() {
+    }
 
     public User(Integer id, String name, Date birthDate) {
         this.id = id;
